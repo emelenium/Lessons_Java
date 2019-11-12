@@ -15,7 +15,7 @@ public class udpClient {
         datagramSocket.send(datagramPacket);
 
         byte[] bytes1 = new byte[1024];
-        DatagramPacket datagramPacket1 = new DatagramPacket();
+        DatagramPacket datagramPacket1 = new DatagramPacket(bytes1,bytes1.length);
         datagramSocket.receive(datagramPacket1);
 
         String str = new String((datagramPacket1.getData()));
