@@ -10,12 +10,12 @@ public class udpServer {
         byte[] bytes1 = new byte[1024];
         DatagramPacket datagramPacket2 = new DatagramPacket(bytes1, bytes1.length);
         datagramSocket2.receive(datagramPacket2);
-        String str = new String(datagramPacket2.getData());
+        String str = new String(datagramPacket2.getData(), 0, datagramPacket2.getLength());
         int num = Integer.parseInt(str.trim());
-        int result = num*num;
-        byte[] bytes2 =(result+"").getBytes();
+        int result = num * num;
+        byte[] bytes2 = String.valueOf(result).getBytes();
         InetAddress inetAddress = InetAddress.getLocalHost();
-        DatagramPacket datagramPacket3 = new DatagramPacket(bytes2, bytes2.length,inetAddress,datagramPacket2.getPort());
+        DatagramPacket datagramPacket3 = new DatagramPacket(bytes2, bytes2.length, inetAddress, datagramPacket2.getPort());
         datagramSocket2.send(datagramPacket3);
     }
 }

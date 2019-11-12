@@ -17,10 +17,10 @@ public class udpClient {
         ds.send(dp);
 
         byte[] b1 = new byte[1024];
-        DatagramPacket dp1 = new DatagramPacket(b1,b1.length);
+        DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
         ds.receive(dp1);
 
-        String str = new String((dp1.getData()));
+        String str = new String(dp1.getData(), 0, dp1.getLength());
         System.out.println("result is " + str);
 
     }
