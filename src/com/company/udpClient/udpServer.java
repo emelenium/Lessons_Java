@@ -6,16 +6,17 @@ import java.net.InetAddress;
 
 public class udpServer {
     public static void main(String[] args) throws Exception {
-        DatagramSocket datagramSocket2 = new DatagramSocket(9999);
-        byte[] bytes1 = new byte[1024];
-        DatagramPacket datagramPacket2 = new DatagramPacket(bytes1, bytes1.length);
-        datagramSocket2.receive(datagramPacket2);
+        DatagramSocket datagramSocket2 = new DatagramSocket(9999);//создание сокета
+        byte[] bytes1 = new byte[1024];//массив для приёмданных в датаграмме
+        DatagramPacket datagramPacket2 = new DatagramPacket(bytes1, bytes1.length);//датаграмма для приема данных
+        datagramSocket2.receive(datagramPacket2);//чтение входящих пакетов
         String str = new String(datagramPacket2.getData(), 0, datagramPacket2.getLength());
         int num = Integer.parseInt(str.trim());
         int result = num * num;
-        byte[] bytes2 = String.valueOf(result).getBytes();
-        InetAddress inetAddress = InetAddress.getLocalHost();
-        DatagramPacket datagramPacket3 = new DatagramPacket(bytes2, bytes2.length, inetAddress, datagramPacket2.getPort());
-        datagramSocket2.send(datagramPacket3);
+        byte[] bytes2 = String.valueOf(result).getBytes();//массив для отправки ответа в датаграмме
+        InetAddress inetAddress = InetAddress.getLocalHost();//адрес локального хоста
+        DatagramPacket datagramPacket3 = new DatagramPacket(bytes2, bytes2.length, inetAddress, datagramPacket2.getPort());//создание и подготовка исходящей ответной датаграммы, порт берется из входящей датаграммы
+        System.out.println("порт =" + datagramPacket2.getPort());
+        datagramSocket2.send(datagramPacket3);//отправка ответа
     }
 }
