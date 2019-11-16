@@ -2,6 +2,7 @@ package com.company.udpClient;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.Inet6Address;
 import java.net.InetAddress;
 
 public class udpClient {
@@ -11,7 +12,6 @@ public class udpClient {
 
         int i = 2338;
         byte[] b = String.valueOf(i).getBytes();//массив байтов для отправки пакета (датаграммы)
-
         InetAddress ia = InetAddress.getLocalHost();//ip адресс куда отправляем датаграмму
         System.out.println(b.length);
         DatagramPacket dp = new DatagramPacket(b, b.length, ia, 9999);//создание датаграммы
