@@ -17,10 +17,13 @@ public class testmetod {
         //     if (add6 == null)
         //         throw new RuntimeException("no IPv6 local address found!");
         //     InetSocketAddress sa = new InetSocketAddress(add6, 9999);
-        String host = "facebook.com";
-        InetAddress[] inAdd = Inet6Address.getAllByName(host);
-        for (InetAddress ia : inAdd) {
-            System.out.println(ia.getCanonicalHostName());
+       String host = "facebook.com";
+       InetAddress[] inAdd = Inet6Address.getAllByName("localhost");
+
+        Inet6Address add6 = null;
+       for (InetAddress ia : inAdd) {
+   //        System.out.println(ia.getCanonicalHostName());
+        System.out.println(ia.getHostAddress());
         }
         InetAddress ina = Inet6Address.getLocalHost();
         System.out.println(ina.getCanonicalHostName());
