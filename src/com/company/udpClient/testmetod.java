@@ -1,29 +1,39 @@
 package com.company.udpClient;
 
+import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 public class testmetod {
-    public static void main(String[] args) throws Exception {
-        //     InetAddress[] addresses = InetAddress.getAllByName("localhost");
-        //     Inet6Address add6 = null;
-        //     for (InetAddress add : addresses) {
-        //         if (add instanceof Inet6Address) {
-        //             add6 = add;
-        //             break;
-        //         }
-        //     }
-        //     if (add6 == null)
-        //         throw new RuntimeException("no IPv6 local address found!");
-        //     InetSocketAddress sa = new InetSocketAddress(add6, 9999);
-    //   String host = "facebook.com";
-       InetAddress[] inAdd = InetAddress.getAllByName("localhost");
-   //    for (InetAddress ia : inAdd) {
-   //     System.out.println(ia.getHostAddress());
-   //     }
-        InetAddress ina = Inet6Address.getLocalHost();
-        System.out.println(ina.getCanonicalHostName());
-        System.out.println(ina.getHostAddress());
+    public static Inet6Address getInet6AddressByName(String host) throws Exception, SecurityException {
+        for (InetAddress addr : InetAddress.getAllByName(host)) {
+            if (addr instanceof Inet6Address)
+                return (Inet6Address) addr;
+        }
+        throw new Exception("No IPv6 address found for " + host);
     }
+
+    public static void main(String[] args) throws Exception {
+        String host = "google.com";//"localhost";
+        InetAddress adr = InetAddress.getByAddress(new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1});//Создает объект InetAddress с указанным IP4 или IP6 адресом
+        InetAddress adr2 =InetAddress.getByName(host);
+        System.out.println(adr2.getCanonicalHostName());//возвращает каноническое имя компьютера
+        System.out.println(adr2.getHostName());//возвращает имя хоста  инициализированного объекта InetAddress
+        System.out.println(adr2.getHostAddress());
+        System.out.println(adr2.isMCGlobal());
+
+        for (InetAddress adr3 : InetAddress.getAllByName(host)){
+            System.out.println(adr3.getHostAddress());
+
+
+        }
+
+
+      // System.out.println(getInet6AddressByName(host));
+
+
+    }
+
 }
+
