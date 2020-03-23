@@ -24,7 +24,7 @@ public class testmetod {
         System.out.println(adr2.isMCGlobal());
 
         for (InetAddress adr3 : InetAddress.getAllByName(host)){
-            System.out.println(adr3.getHostAddress());
+            System.out.println("getAllByName:  "+adr3.getHostAddress());
 
 
         }

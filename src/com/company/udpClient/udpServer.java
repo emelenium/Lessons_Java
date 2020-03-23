@@ -7,10 +7,11 @@ import java.net.InetAddress;
 public class udpServer {
     public static void main(String[] args) throws Exception {
         DatagramSocket datagramSocket2 = new DatagramSocket(9999);//создание сокета
-        byte[] bytes1 = new byte[1024];//массив для приёмданных в датаграмме
+        byte[] bytes1 = new byte[1024];//массив для приёма данных в датаграмме
         DatagramPacket datagramPacket2 = new DatagramPacket(bytes1, bytes1.length);//датаграмма для приема данных
         datagramSocket2.receive(datagramPacket2);//чтение входящих пакетов
         String str = new String(datagramPacket2.getData(), 0, datagramPacket2.getLength());
+        System.out.println(str);
         int num = Integer.parseInt(str.trim());
         int result = num * num;
         byte[] bytes2 = String.valueOf(result).getBytes();//массив для отправки ответа в датаграмме
