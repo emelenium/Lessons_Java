@@ -22,12 +22,15 @@ public class testmetod {
         System.out.println(adr2.getHostName());//возвращает имя хоста  инициализированного объекта InetAddress
         System.out.println(adr2.getHostAddress());
         System.out.println(adr2.isMCGlobal());
-
+        //показывает все ip адреса google.com
         for (InetAddress adr3 : InetAddress.getAllByName(host)){
-            System.out.println("getAllByName:  "+adr3.getHostAddress());
-
+            System.out.println("getAllByName:  "+adr3.getHostAddress()+"   "+adr3.getClass());
 
         }
+        //данный код показывает все элементы структыры, отведенной для ip адресов, для www.google.com
+            InetAddress[] hosts = InetAddress.getAllByName("www.google.com");
+            for(int j = 0; j < hosts.length; j++) System.out.println(hosts[j]);
+
 
 
       // System.out.println(getInet6AddressByName(host));
