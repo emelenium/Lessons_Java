@@ -18,6 +18,10 @@ public static void main(String[] args) throws ParserConfigurationException, Clas
         try(Connection connection = DriverManager.getConnection(connectUrl,userName,password);
         Statement statement = connection.createStatement()) {
         System.out.println("We're connected");
+        statement.executeUpdate("DROP TABLE Books");
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS Books (id MEDIUMINT NOT NULL  AUTO_INCREMENT,name CHAR (30) NOT NULL, PRIMARY_KEY(id));");
+        statement.executeUpdate("INSERT INTO Books (name) values('Inferno')");
+            statement.executeUpdate("INSERT INTO Books SET name ='Inferno'");
     }
 }
 }
